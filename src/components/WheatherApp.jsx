@@ -4,12 +4,23 @@ import { useState } from 'react'
 
 
 const WheatherApp = () => {
+    //gerenciamento  e controle de dados
     const [location, setLocation] = useState('')
 
     const handleInputChanges = (e) => {
-        setLocation(e.target.value)
+        setLocation(e.target.value)     
+        console.log(location)
       }
 
+      const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+          search(location)
+        }
+      }
+
+      const search = (city) => {
+        console.log('Searching for:', city)
+      }
 
 
 
@@ -30,8 +41,10 @@ console.log(location)
             placeholder="Enter Location"
             value={location}
             onChange={handleInputChanges}
+            onKeyDown={handleKeyDown}
         />  
-            <i className="fa-solid fa-magnifying-glass"></i>
+            <i className="fa-solid fa-magnifying-glass" onClick={() => search(location)} >
+            </i>
           </div>
         </div>
 
